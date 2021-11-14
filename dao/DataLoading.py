@@ -17,18 +17,20 @@ def split_data(file_path, index):
     test_data_start_pt = int(re.findall(
         r'[0-9]*.txt', file_name)[0].split('.')[0])
     #data = pd.read_csv(os.path.join(file_path, os.listdir(file_path)[index]))
-    data = [float(i.strip()) for i in open(os.path.join(file_path,os.listdir(file_path)[index])).readlines()]
+    try:
+        data = [float(i.strip()) for i in open(os.path.join(file_path,os.listdir(file_path)[index])).readlines()]
+    except:
+        data = [float(i.strip()) for i in list(filter(lambda x: x != "",open(os.path.join(file_path,os.listdir(file_path)[index])).readlines()[0].split(' ')))]
     train_data = data[0:test_data_start_pt]
     test_data = data[test_data_start_pt+1:len(data)]
 
-    return train_data, test_data
+    return train_data, test_data,test_data_start_pt
 
-train, test = split_data(file_path, 1)
+#train, test = split_data(file_path, 1)
 #train.head()
 #test.head()
 
-
-
+#train,test = split_data(file_path,204)
 
 # # Above, initially set to only load first file into "data" and return training/testing data frames
 #  in future could beextended to something like this

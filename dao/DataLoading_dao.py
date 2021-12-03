@@ -6,7 +6,7 @@ import pandas as pd
 import re
 
 # define path to data directory
-file_path = os.path.join(os.getcwd(), 'KDD-Cup', 'data')
+file_path = os.path.join(os.getcwd(), 'data-sets','KDD-Cup', 'data')
 print(file_path)
 
 file_to_load = os.path.join(file_path, os.listdir(file_path)[1])
